@@ -1,3 +1,5 @@
-var App = require("./ui/app");
+var routes = require('./ui/routes');
 
-React.render(<App />, document.body);
+ReactRouter.run(routes, function(Handler) {
+    React.render(<Handler />, document.body);
+});
