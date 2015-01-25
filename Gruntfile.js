@@ -21,16 +21,41 @@ module.exports = function(grunt) {
             }
         },
 
+        'watch': {
+            'dev': {
+                'files': ['public/**'],
+                'tasks': ['build'],
+                'options': {
+                    'spawn': true
+                }
+            }
+        },
+
         'http-server': {
             'dev': {
                 'root': 'target/public',
                 'port': 8080,
                 'host': '0.0.0.0'
             }
+        },
+
+        'parallel': {
+            'dev': {
+                'tasks': [{
+                    'grunt': true,
+                    'args': ['http-server:dev']
+                }, {
+                    'grunt': true,
+                    'args': ['watch:dev']
+                }]
+            },
+            'options': {
+                'stream': true
+            }
         }
     });
 
     grunt.registerTask('build', ['sync:build']);
-    grunt.registerTask('start', ['build', 'http-server:dev']);
+    grunt.registerTask('start', ['build', 'parallel:dev']);
     grunt.registerTask('default', ['build']);
 };
