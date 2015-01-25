@@ -8,7 +8,7 @@ var RouteHandler = ReactRouter.RouteHandler,
 
 var App = React.createClass({
     render: function() {
-        return <div>
+        return <div className='container-fluid'>
             <Navbar>
               <Nav>
                 <NavItemLink to='home'>Home</NavItemLink>

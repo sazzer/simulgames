@@ -1,6 +1,35 @@
+var LevelSettings = require('./levelSettings');
+
+var Button = ReactBootstrap.Button,
+    ButtonToolbar = ReactBootstrap.ButtonToolbar;
+
 var MainPage = React.createClass({
     render: function() {
-        return <div>Main Page</div>;
+        return <div>
+            <div className='row'>
+                <div className='col-md-12'>
+                    Game Output Here
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-md-8'>
+                    <textarea style={{'width': '100%'}} rows='20'></textarea>
+                </div>
+                <div className='col-md-4'>
+                    <LevelSettings settings={this.props.levelSettings} />
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-md-12'>
+                    <ButtonToolbar>
+                        <Button bsStyle='primary' onClick={this.props.onStart}>Start</Button>
+                        <Button onClick={this.props.onStop}>Stop</Button>
+                        <Button onClick={this.props.onRestart}>Restart</Button>
+                        <Button bsStyle='danger' onClick={this.props.onReset}>Reset</Button>
+                    </ButtonToolbar>
+                </div>
+            </div>
+        </div>;
     }
 });
 
