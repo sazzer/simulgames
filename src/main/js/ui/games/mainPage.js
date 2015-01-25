@@ -16,7 +16,7 @@ var MainPage = React.createClass({
                     <textarea style={{'width': '100%'}} rows='20'></textarea>
                 </div>
                 <div className='col-md-4'>
-                    <LevelSettings settings={this.props.levelSettings} />
+                    <LevelSettings settings={this.props.levelSettings} onChange={this.props.onSettingsChange}/>
                 </div>
             </div>
             <div className='row'>

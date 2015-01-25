@@ -20,7 +20,12 @@ var ElevatorGame = React.createClass({
                          onStart={this._onStart}
                          onStop={this._onStop}
                          onRestart={this._onRestart}
-                         onReset={this._onReset}></MainPage>;
+                         onReset={this._onReset}
+                         onSettingsChange={this._onSettingsChange}></MainPage>;
+    },
+
+    _onSettingsChange: function(key, value) {
+        console.log(key + " = " + value);
     },
 
     _onStart: function() {
