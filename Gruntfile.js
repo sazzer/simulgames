@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         'sync': {
             'build': {
                 'files': [{
-                    'cwd': 'public',
+                    'cwd': 'src/main/public',
                     'src': '**',
                     'dest': 'target/public'
                 }]
@@ -42,9 +42,15 @@ module.exports = function(grunt) {
             }
         },
 
+        'browserify': {
+            'target/public/app.js': [
+                'src/main/js/app.js'
+            ]
+        },
+
         'watch': {
             'dev': {
-                'files': ['public/**', 'bower.json'],
+                'files': ['src/main/public/**', 'bower.json', 'src/main/js/**'],
                 'tasks': ['build']
             }
         },
@@ -73,7 +79,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['bower:build', 'sync:build', 'wiredep:build']);
+    grunt.registerTask('build', ['bower:build', 'sync:build', 'wiredep:build', 'browserify']);
     grunt.registerTask('start', ['build', 'parallel:dev']);
     grunt.registerTask('default', ['build']);
 };
