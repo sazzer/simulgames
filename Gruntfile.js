@@ -26,8 +26,18 @@ module.exports = function(grunt) {
         'bower': {
             'build': {
                 'options': {
-                    'targetDir': 'target/public/components',
-                    'cleanTargetDir': true
+                    'cleanTargetDir': true,
+                    'copy': false // Believe it or not. Otherwise wiredep doesn't work...
+                }
+            }
+        },
+
+        'wiredep': {
+            'build': {
+                'src': [
+                    'target/public/index.html'
+                ],
+                'options': {
                 }
             }
         },
@@ -63,7 +73,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['bower:build', 'sync:build']);
+    grunt.registerTask('build', ['bower:build', 'sync:build', 'wiredep:build']);
     grunt.registerTask('start', ['build', 'parallel:dev']);
     grunt.registerTask('default', ['build']);
 };
