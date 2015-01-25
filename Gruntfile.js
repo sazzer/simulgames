@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
     require('time-grunt')(grunt);
-    require('jit-grunt')(grunt, []);
+    require('jit-grunt')(grunt, {
+        'bower': 'grunt-bower-task'
+    });
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -21,13 +23,19 @@ module.exports = function(grunt) {
             }
         },
 
+        'bower': {
+            'build': {
+                'options': {
+                    'targetDir': 'target/public/components',
+                    'cleanTargetDir': true
+                }
+            }
+        },
+
         'watch': {
             'dev': {
-                'files': ['public/**'],
-                'tasks': ['build'],
-                'options': {
-                    'spawn': true
-                }
+                'files': ['public/**', 'bower.json'],
+                'tasks': ['build']
             }
         },
 
@@ -55,7 +63,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['sync:build']);
+    grunt.registerTask('build', ['bower:build', 'sync:build']);
     grunt.registerTask('start', ['build', 'parallel:dev']);
     grunt.registerTask('default', ['build']);
 };
