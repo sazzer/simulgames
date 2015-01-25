@@ -43,9 +43,16 @@ module.exports = function(grunt) {
         },
 
         'browserify': {
-            'target/public/app.js': [
-                'src/main/js/app.js'
-            ]
+            'build': {
+                'files': {
+                    'target/public/app.js': [
+                        'src/main/js/app.js'
+                    ]
+                },
+                'options': {
+                    'transform': ['reactify']
+                }
+            }
         },
 
         'watch': {
@@ -79,7 +86,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['bower:build', 'sync:build', 'wiredep:build', 'browserify']);
+    grunt.registerTask('build', ['bower:build', 'sync:build', 'wiredep:build', 'browserify:build']);
     grunt.registerTask('start', ['build', 'parallel:dev']);
     grunt.registerTask('default', ['build']);
 };

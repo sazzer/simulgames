@@ -1,5 +1,7 @@
-module.exports = React.createClass({displayName: 'App',
+var App = React.createClass({
     render: function() {
-        return React.createElement('div', {}, 'Hello, World');
+        return <div>Hello, World!</div>;
     }
 });
+
+module.exports = App;
