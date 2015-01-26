@@ -1,4 +1,5 @@
-var LevelSettings = require('./levelSettings');
+var LevelSettings = require('./levelSettings'),
+    CodeMirror = require('./codeMirror');
 
 var Button = ReactBootstrap.Button,
     ButtonToolbar = ReactBootstrap.ButtonToolbar;
@@ -13,7 +14,7 @@ var MainPage = React.createClass({
             </div>
             <div className='row'>
                 <div className='col-md-8'>
-                    <textarea style={{'width': '100%'}} rows='20'></textarea>
+                    <CodeMirror style={{'border': '1px solid black'}} mode='javascript' lineNumbers='true' />
                 </div>
                 <div className='col-md-4'>
                     <LevelSettings settings={this.props.levelSettings} onChange={this.props.onSettingsChange}/>
